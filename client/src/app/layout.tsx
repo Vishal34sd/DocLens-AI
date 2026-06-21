@@ -25,9 +25,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative selection:bg-primary/30">
+        <div className="pointer-events-none absolute inset-0 z-[-1] bg-background"></div>
+        <div className="pointer-events-none absolute inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,var(--color-primary),transparent)] opacity-15"></div>
+        {children}
+      </body>
     </html>
   );
 }

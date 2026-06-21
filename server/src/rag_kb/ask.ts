@@ -18,8 +18,8 @@
 
 // ask the kb - knowledge -> retrieval + answer
 
-import {getVectorStore} from "./store.ts"
-import {getChatModel} from "./model.ts"
+import {getVectorStore} from "./store"
+import {getChatModel} from "./model"
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
 export type KBSource = {

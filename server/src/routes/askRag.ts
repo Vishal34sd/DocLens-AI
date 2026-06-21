@@ -17,12 +17,13 @@ kbRouter.post("/ingest" , async(req , res)=>{
     try{
         const body = ingestBody.parse(req.body) as ingestBodyT
 
-        const result  = ingestText({text : body.text , source : body.source ?? "pasted text" });
+        const result = await ingestText({text : body.text , source : body.source ?? "pasted text" });
 
         return res.status(200).json({ok : true , ...result})
     }
     catch(err){
         console.log("Something went wrong " , err)
+        return res.status(500).json({ok: false, error: err instanceof Error ? err.message : "Ingestion failed"})
     }
 });
 
@@ -52,6 +53,7 @@ kbRouter.post("/ask", async(req , res)=>{
     }
     catch(err){
         console.log(err)
+        return res.status(500).json({ok: false, error: err instanceof Error ? err.message : "Ask failed"})
     }
 })
 
